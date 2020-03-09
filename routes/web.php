@@ -15,31 +15,46 @@
 //     return view('welcome');
 // });
 
-Route::get('/', function()
+//auth
+Route::get('login', 'Auth\LoginController@login');
 
-{
+Route::group(['middleware' => ['auth']], function() {
+//  Route::auth();
+});
+
+Route::get('/login', function(){
+
+   return View::make('auth.login');
+
+});
+
+//general
+Route::get('/', function(){
 
    return View::make('pages.home');
 
 });
 
-Route::get('/about', function()
+Route::get('/home', function(){
 
-{
+   return View::make('pages.home');
+
+});
+
+Route::get('/about', function(){
 
    return View::make('pages.contact');
 
 });
 
-Route::get('/login', function()
+//customer
 
-{
+Route::get('/cekmobil', function () {
 
-   return View::make('pages.login');
+    return View::make('customer.cekmobil');
 
 });
 
-
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('home', 'HomeController@index')->name('pages.home');

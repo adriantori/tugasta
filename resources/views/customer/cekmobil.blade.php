@@ -2,6 +2,6 @@
 
 @section('content')
 
-   i am the contact page
+   <p>Cek Kendaraan</p>
 
 @stop
